@@ -1,0 +1,45 @@
+
+<% if action == :sign_up %>
+  <% submit_text = 'Sign Up' %>
+  <% action_url = users_url %>
+<% else %>
+    <% submit_text = 'Login' %>
+    <% action_url = session_url %>
+<% end %>
+
+
+<form class="" action="<%=action_url%>" method="post">
+
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+
+
+<body style= "background-color:powderblue;"
+ background= "http://www.stickpng.com/assets/images/580b57fbd9996e24bc43bb8d.png"
+></body>
+  <label for="user_name">Username:</label>
+  <input
+    type="text"
+    name="user[user_name]"
+    id="user_name"
+    value="">
+  <br>
+  <br>
+  <label for="password">Password:</label>
+  <input
+    type="password"
+    name="user[password]"
+    id="password"
+    value="">
+  <br>
+  <br>
+  <% if flash.now[:errors] %>
+    <% flash.now[:errors].each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+  <input type="submit" value="<%= submit_text %>">
+</form>
