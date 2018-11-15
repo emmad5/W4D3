@@ -1,5 +1,13 @@
 <h1><%= @cat.name %></h1>
-
+<% if flash.now[:errors] %>
+  <% flash.now[:errors].each do |error| %>
+    <h1>
+      <font color="red" style= "background-color:black;">
+      <%= error %>
+      </font>
+    </h1>
+  <% end %>
+<% end %>
 <table>
   <tr>
     <th>Attribute</th>
@@ -14,7 +22,8 @@
 </table>
 
 <a href="<%= edit_cat_url(@cat) %>">Edit <%= @cat.name %></a>
-
+<br>
+<img src="https://media.giphy.com/media/nNxT5qXR02FOM/giphy.gif" alt="cat">
 <h2>Rental Requests</h2>
 <table>
   <tr>
@@ -26,3 +35,10 @@
     <%= render 'req_tr', req: req %>
   <% end %>
 </table>
+
+<form class="" action="<%=cats_url%>" method="get">
+  <br>
+  Back to cats?
+  <br>
+  <input type="submit" name="" value="ALL CATS">
+</form>
